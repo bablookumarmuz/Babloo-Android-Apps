@@ -10,7 +10,7 @@
     * {margin:0; padding:0; box-sizing:border-box;}
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg,#f9f9fc,#eef2f9);
+      background: #f7f9fc;
       color: #333;
       scroll-behavior: smooth;
     }
@@ -18,143 +18,284 @@
     /* Navbar */
     nav {
       position: fixed;
+      top:0; left:0;
       width: 100%;
-      top: 0;
-      left: 0;
       background: rgba(10, 61, 98, 0.95);
-      color: white;
+      backdrop-filter: blur(8px);
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 12px 10%;
       z-index: 1000;
     }
-    nav h1 { font-size: 1.6rem; font-weight: 700; }
-    nav ul { list-style: none; display: flex; gap: 25px; }
-    nav ul li a {
-      text-decoration: none; color: white; font-weight: 500;
-      transition: color .3s;
-    }
+    nav h1 { color:white; font-size:1.6rem; font-weight:700;}
+    nav ul { list-style:none; display:flex; gap:25px;}
+    nav ul li a { text-decoration:none; color:white; font-weight:500; transition: color .3s; }
     nav ul li a:hover { color: #ffd32a; }
+    .hamburger { display:none; flex-direction: column; cursor:pointer; }
+    .hamburger span { width: 26px; height:3px; background:white; margin:4px 0; border-radius:3px; transition: all .4s;}
+    .hamburger.open span:nth-child(1){ transform:rotate(45deg) translate(5px,5px);}
+    .hamburger.open span:nth-child(2){ opacity:0;}
+    .hamburger.open span:nth-child(3){ transform:rotate(-45deg) translate(5px,-5px);}
+    @media(max-width:768px){
+      nav ul { position:absolute; top:60px; left:-100%; flex-direction:column; background: rgba(10,61,98,0.95); width:100%; padding:20px 0; gap:20px; transition: left .3s;}
+      nav ul.active { left:0; }
+      .hamburger { display:flex; }
+    }
 
     /* Hero */
     header.hero {
       height: 100vh;
-      display: flex; justify-content: center; align-items: center;
-      flex-direction: column; text-align: center; padding: 0 10%;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center;
       background: linear-gradient(135deg,#0a3d62,#1e5799);
-      color: white;
+      color:white;
+      padding: 0 10%;
     }
-    header.hero h1 { font-size: 3rem; }
-    header.hero p { margin-top: 15px; font-size: 1.2rem; opacity: 0.9; }
-    header.hero .cta {
-      margin-top: 30px; padding: 14px 28px;
-      background: #ffd32a; color: #0a3d62; font-size: 1.1rem;
-      font-weight: 600; border-radius: 30px; text-decoration: none;
-    }
-    header.hero .cta:hover { background: #ffca0a; }
+    header.hero h1 { font-size:3rem; animation: fadeDown 1s ease forwards; }
+    header.hero p { font-size:1.2rem; margin-top:15px; animation: fadeUp 1.2s ease forwards; opacity:0.9;}
+    header.hero .cta { margin-top:30px; padding:14px 28px; background:#ffd32a; color:#0a3d62; font-weight:600; border-radius:30px; text-decoration:none; transition: all .3s; }
+    header.hero .cta:hover { transform:translateY(-5px); box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+    @keyframes fadeDown { 0%{opacity:0; transform:translateY(-30px);} 100%{opacity:1; transform:translateY(0);} }
+    @keyframes fadeUp { 0%{opacity:0; transform:translateY(30px);} 100%{opacity:1; transform:translateY(0);} }
 
-    /* Apps */
-    .apps {
-      display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 25px; padding: 80px 10%;
-    }
+    /* App Cards */
+    .apps { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; padding:80px 10%; }
     .card {
-      background: white; border-radius: 18px; padding: 30px 20px;
-      text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      background:white; border-radius:18px; padding:25px; text-align:center;
+      box-shadow:0 4px 14px rgba(0,0,0,0.1); transition: transform .3s, box-shadow .3s;
     }
-    .card img { width: 100px; height: 100px; margin-bottom: 15px; }
-    .card h2 { font-size: 1.3rem; color: #0a3d62; margin-bottom: 10px; }
-    .card p { font-size: .95rem; color: #666; min-height: 60px; }
+    .card:hover { transform:translateY(-10px); box-shadow:0 12px 28px rgba(0,0,0,0.15); }
+    .card img { width:110px; height:110px; margin-bottom:15px; border-radius:15px; object-fit:cover; }
+    .card h2 { font-size:1.3rem; color:#0a3d62; margin-bottom:10px; }
+    .card p { font-size:.95rem; color:#666; min-height:60px; }
     .download-btn {
-      display: inline-block; margin-top: 15px; padding: 10px 22px;
-      background: #0a3d62; color: white; border-radius: 8px;
-      text-decoration: none; font-weight: 500;
+      display:inline-block; margin-top:12px; padding:10px 22px; background:#0a3d62; color:white; border-radius:8px;
+      font-weight:500; text-decoration:none; transition: all .3s;
     }
-    .download-btn:hover { background: #1e5799; }
+    .download-btn:hover { background:#1e5799; transform:translateY(-3px); }
+
+    /* Details Section */
+    section.details { padding:60px 10%; animation: fadeUp 1s ease forwards;}
+    section.details h2 { font-size:2rem; color:#0a3d62; margin-bottom:15px;}
+    section.details p { font-size:1rem; margin-bottom:20px;}
+    section.details ul { list-style:none; }
+    section.details ul li { margin-bottom:10px; }
+    section.details ul li:before { content:"✔ "; color:#0a3d62; font-weight:bold; }
+
+    /* FAQ */
+    .faq { background:#f1f5f9; padding:60px 10%; }
+    .faq h2 { font-size:2rem; color:#0a3d62; margin-bottom:25px;}
+    .faq-item { margin-bottom:20px;}
+    .faq-item h3 { font-size:1.2rem; cursor:pointer; color:#0a3d62; }
+    .faq-item p { display:none; margin-top:10px; color:#444; }
 
     /* Footer */
-    footer {
-      background: #0a3d62; color: white; text-align: center; padding: 30px 15px;
-    }
-    footer p { margin: 5px; opacity: 0.8; }
-    .socials a { margin: 0 10px; color: white; font-size: 1.2rem; }
-    .socials a:hover { color: #ffd32a; }
+    footer { background:#0a3d62; color:white; text-align:center; padding:30px 15px;}
+    footer p { margin:5px; opacity:.85;}
+    .socials { margin-top:10px; }
+    .socials a { margin:0 10px; color:white; font-size:1.2rem; transition:color .3s; }
+    .socials a:hover { color:#ffd32a; }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav>
     <h1>Babloo Apps</h1>
-    <ul>
+    <ul id="menu">
       <li><a href="#apps">Apps</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </nav>
 
-  <!-- Hero -->
   <header class="hero">
-    <h1>Welcome to Babloo’s Android Apps</h1>
-    <p>A collection of my Android projects – free to download and use</p>
+    <h1>Welcome to My Android Apps</h1>
+    <p>All my projects in one place. Explore and download the APKs below!</p>
     <a href="#apps" class="cta">Explore Apps</a>
   </header>
 
-  <!-- Apps Showcase -->
   <section id="apps" class="apps">
     <div class="card">
-      <img src="calculator.png" alt="Calculator">
-      <h2>Calculator App</h2>
-      <p>Simple and efficient calculator for daily use.</p>
-      <a href="apk/Android-Calculator-App.apk" class="download-btn" download>Download APK</a>
+      <img src="logo.jpg" alt="Panditjee Booking">
+      <h2>Panditjee Booking</h2>
+      <p>Book pandits for pujas and rituals easily.</p>
+      <a href="panditjee-booking.apk" class="download-btn" download>Download APK</a>
     </div>
     <div class="card">
-      <img src="quiz.png" alt="Quiz">
-      <h2>Quiz Game</h2>
-      <p>Test your knowledge with interactive quizzes.</p>
-      <a href="apk/Android-Quiz-Game-App.apk" class="download-btn" download>Download APK</a>
+      <img src="klogo.jpg" alt="Kachra Seth">
+      <h2>Kachra Seth</h2>
+      <p>Doorstep scrap collection and recycling app.</p>
+      <a href="kachraseth.apk" class="download-btn" download>Download APK</a>
     </div>
     <div class="card">
-      <img src="note.png" alt="Notes">
-      <h2>Note App</h2>
-      <p>Create, edit, and organize your notes easily.</p>
-      <a href="apk/Android-Note-App.apk" class="download-btn" download>Download APK</a>
+      <img src="calculator_icon.png" alt="Calculator">
+      <h2>Calculator</h2>
+      <p>Simple calculator app for all purposes.</p>
+      <a href="calculator.apk" class="download-btn" download>Download APK</a>
     </div>
     <div class="card">
-      <img src="todo.png" alt="Todo List">
-      <h2>Todo List App</h2>
-      <p>Stay productive with this simple task manager.</p>
-      <a href="apk/Android-Todo-List-App.apk" class="download-btn" download>Download APK</a>
-    </div>
-    <div class="card">
-      <img src="photo.png" alt="Photo Album">
+      <img src="photo_album_icon.png" alt="Photo Album">
       <h2>Photo Album</h2>
-      <p>Store and view your favorite pictures in one place.</p>
-      <a href="apk/Android-Photo-Album.apk" class="download-btn" download>Download APK</a>
+      <p>Store, organize and view your favorite photos.</p>
+      <a href="photoalbum.apk" class="download-btn" download>Download APK</a>
     </div>
     <div class="card">
-      <img src="flag.png" alt="Flag Quiz">
+      <img src="flag_quiz_icon.png" alt="Flag Quiz">
       <h2>Flag Quiz</h2>
-      <p>Learn world flags with this fun quiz game.</p>
-      <a href="apk/Android-Flag-Quiz-App.apk" class="download-btn" download>Download APK</a>
+      <p>Test your knowledge of world flags.</p>
+      <a href="flagquiz.apk" class="download-btn" download>Download APK</a>
     </div>
     <div class="card">
-      <img src="math.png" alt="Math Game">
+      <img src="math game.jpeg" alt="Math Game">
       <h2>Math Game</h2>
-      <p>Sharpen your brain with interactive math puzzles.</p>
-      <a href="apk/Android-Math-Game-App.apk" class="download-btn" download>Download APK</a>
+      <p>Fun math puzzles and challenges for all ages.</p>
+      <a href="mathgame.apk" class="download-btn" download>Download APK</a>
+    </div>
+    <div class="card">
+      <img src="note_app_icon.png" alt="Note App">
+      <h2>Note App</h2>
+      <p>Create, save, and organize your notes efficiently.</p>
+      <a href="noteapp.apk" class="download-btn" download>Download APK</a>
+    </div>
+    <div class="card">
+      <img src="quiz_applogo.png" alt="Quiz Game">
+      <h2>Quiz Game</h2>
+      <p>Challenge yourself with fun quizzes and trivia.</p>
+      <a href="quizgame.apk" class="download-btn" download>Download APK</a>
+    </div>
+    <div class="card">
+      <img src="todolist.png" alt="To Do List">
+      <h2>To Do List</h2>
+      <p>Keep track of your daily tasks and stay productive.</p>
+      <a href="todolist.apk" class="download-btn" download>Download APK</a>
     </div>
   </section>
 
-  <!-- Footer -->
+  <section id="details" class="details">
+    <h2>Panditjee Booking</h2>
+    <p>Book pandits for pujas and rituals easily.</p>
+    <ul>
+      <li>Easy booking system</li>
+      <li>Multiple payment options</li>
+      <li>Track upcoming bookings</li>
+      <li>Notifications & reminders</li>
+    </ul>
+
+    <h2>Kachra Seth</h2>
+    <p>Doorstep scrap collection and recycling app.</p>
+    <ul>
+      <li>Schedule pickups</li>
+      <li>Track collected scrap</li>
+      <li>Payment integration</li>
+      <li>Analytics & insights</li>
+    </ul>
+
+    <h2>Calculator</h2>
+    <p>Simple and efficient calculator app.</p>
+    <ul>
+      <li>Basic arithmetic</li>
+      <li>Scientific functions</li>
+      <li>User-friendly interface</li>
+      <li>History tracking</li>
+    </ul>
+
+    <h2>Photo Album</h2>
+    <p>Organize and view your favorite photos.</p>
+    <ul>
+      <li>Create albums</li>
+      <li>Add captions & notes</li>
+      <li>Share photos</li>
+      <li>Secure storage</li>
+    </ul>
+
+    <h2>Flag Quiz</h2>
+    <p>Test your knowledge of world flags.</p>
+    <ul>
+      <li>Multiple choice questions</li>
+      <li>Score tracking</li>
+      <li>Timer challenge</li>
+      <li>Learn flags of countries</li>
+    </ul>
+
+    <h2>Math Game</h2>
+    <p>Fun math puzzles for all ages.</p>
+    <ul>
+      <li>Addition, subtraction, multiplication</li>
+      <li>Timed challenges</li>
+      <li>Level progression</li>
+      <li>Score leaderboard</li>
+    </ul>
+
+    <h2>Note App</h2>
+    <p>Save and organize notes efficiently.</p>
+    <ul>
+      <li>Create & edit notes</li>
+      <li>Search notes</li>
+      <li>Organize by categories</li>
+      <li>Secure storage</li>
+    </ul>
+
+    <h2>Quiz Game</h2>
+    <p>Challenge yourself with quizzes.</p>
+    <ul>
+      <li>Various categories</li>
+      <li>Track your score</li>
+      <li>Time-based challenges</li>
+      <li>Multiplayer mode</li>
+    </ul>
+
+    <h2>To Do List</h2>
+    <p>Track daily tasks efficiently.</p>
+    <ul>
+      <li>Add, edit, and delete tasks</li>
+      <li>Set reminders</li>
+      <li>Organize by priority</li>
+      <li>Mark tasks complete</li>
+    </ul>
+  </section>
+
+  <section id="faq" class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h3>How can I download the apps?</h3>
+      <p>Click the "Download APK" button below each app card to download it directly.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Are the apps free?</h3>
+      <p>Yes, all apps listed here are completely free to use.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do I need internet?</h3>
+      <p>Some apps may require an internet connection for additional features.</p>
+    </div>
+  </section>
+
   <footer id="contact">
     <p>&copy; 2025 Babloo Kumar. All rights reserved.</p>
-    <p>Contact: bablookumarmuz@gmail.com</p>
+    <p>Contact: bablookumarmuz@gmail.com | +91 8228958397</p>
     <div class="socials">
       <a href="https://github.com/bablookumarmuz"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/babloo-kumar-76ba60253"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
     </div>
   </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      hamburger.classList.toggle('open');
+    });
+    document.querySelectorAll(".faq-item h3").forEach(item=>{
+      item.addEventListener("click",()=>{
+        let p = item.nextElementSibling;
+        p.style.display = (p.style.display==="block") ? "none" : "block";
+      });
+    });
+  </script>
 
 </body>
 </html>
