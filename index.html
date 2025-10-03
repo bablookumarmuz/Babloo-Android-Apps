@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Babloo Android Apps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg,#f9f9fc,#eef2f9);
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(10, 61, 98, 0.95);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 10%;
+      z-index: 1000;
+    }
+    nav h1 { font-size: 1.6rem; font-weight: 700; }
+    nav ul { list-style: none; display: flex; gap: 25px; }
+    nav ul li a {
+      text-decoration: none; color: white; font-weight: 500;
+      transition: color .3s;
+    }
+    nav ul li a:hover { color: #ffd32a; }
+
+    /* Hero */
+    header.hero {
+      height: 100vh;
+      display: flex; justify-content: center; align-items: center;
+      flex-direction: column; text-align: center; padding: 0 10%;
+      background: linear-gradient(135deg,#0a3d62,#1e5799);
+      color: white;
+    }
+    header.hero h1 { font-size: 3rem; }
+    header.hero p { margin-top: 15px; font-size: 1.2rem; opacity: 0.9; }
+    header.hero .cta {
+      margin-top: 30px; padding: 14px 28px;
+      background: #ffd32a; color: #0a3d62; font-size: 1.1rem;
+      font-weight: 600; border-radius: 30px; text-decoration: none;
+    }
+    header.hero .cta:hover { background: #ffca0a; }
+
+    /* Apps */
+    .apps {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 25px; padding: 80px 10%;
+    }
+    .card {
+      background: white; border-radius: 18px; padding: 30px 20px;
+      text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+    .card img { width: 100px; height: 100px; margin-bottom: 15px; }
+    .card h2 { font-size: 1.3rem; color: #0a3d62; margin-bottom: 10px; }
+    .card p { font-size: .95rem; color: #666; min-height: 60px; }
+    .download-btn {
+      display: inline-block; margin-top: 15px; padding: 10px 22px;
+      background: #0a3d62; color: white; border-radius: 8px;
+      text-decoration: none; font-weight: 500;
+    }
+    .download-btn:hover { background: #1e5799; }
+
+    /* Footer */
+    footer {
+      background: #0a3d62; color: white; text-align: center; padding: 30px 15px;
+    }
+    footer p { margin: 5px; opacity: 0.8; }
+    .socials a { margin: 0 10px; color: white; font-size: 1.2rem; }
+    .socials a:hover { color: #ffd32a; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h1>Babloo Apps</h1>
+    <ul>
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1>Welcome to Babloo’s Android Apps</h1>
+    <p>A collection of my Android projects – free to download and use</p>
+    <a href="#apps" class="cta">Explore Apps</a>
+  </header>
+
+  <!-- Apps Showcase -->
+  <section id="apps" class="apps">
+    <div class="card">
+      <img src="calculator.png" alt="Calculator">
+      <h2>Calculator App</h2>
+      <p>Simple and efficient calculator for daily use.</p>
+      <a href="apk/Android-Calculator-App.apk" class="download-btn" download>Download APK</a>
+    </div>
+    <div class="card">
+      <img src="quiz.png" alt="Quiz">
+      <h2>Quiz Game</h2>
+      <p>Test your knowledge with interactive quizzes.</p>
+      <a href="apk/Android-Quiz-Game-App.apk" class="download-btn" download>Download APK</a>
+    </div>
+    <div class="card">
+      <img src="note.png" alt="Notes">
+      <h2>Note App</h2>
+      <p>Create, edit, and organize your notes easily.</p>
+      <a href="apk/Android-Note-App.apk" class="download-btn" download>Download APK</a>
+    </div>
+    <div class="card">
+      <img src="todo.png" alt="Todo List">
+      <h2>Todo List App</h2>
+      <p>Stay productive with this simple task manager.</p>
+      <a href="apk/Android-Todo-List-App.apk" class="download-btn" download>Download APK</a>
+    </div>
+    <div class="card">
+      <img src="photo.png" alt="Photo Album">
+      <h2>Photo Album</h2>
+      <p>Store and view your favorite pictures in one place.</p>
+      <a href="apk/Android-Photo-Album.apk" class="download-btn" download>Download APK</a>
+    </div>
+    <div class="card">
+      <img src="flag.png" alt="Flag Quiz">
+      <h2>Flag Quiz</h2>
+      <p>Learn world flags with this fun quiz game.</p>
+      <a href="apk/Android-Flag-Quiz-App.apk" class="download-btn" download>Download APK</a>
+    </div>
+    <div class="card">
+      <img src="math.png" alt="Math Game">
+      <h2>Math Game</h2>
+      <p>Sharpen your brain with interactive math puzzles.</p>
+      <a href="apk/Android-Math-Game-App.apk" class="download-btn" download>Download APK</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>&copy; 2025 Babloo Kumar. All rights reserved.</p>
+    <p>Contact: bablookumarmuz@gmail.com</p>
+    <div class="socials">
+      <a href="https://github.com/bablookumarmuz"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/babloo-kumar-76ba60253"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
+
+</body>
+</html>
